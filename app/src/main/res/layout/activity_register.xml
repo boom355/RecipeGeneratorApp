@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FAEEDD"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
@@ -52,8 +53,10 @@
             android:id="@+id/register_button"
             android:layout_width="100dp"
             android:layout_height="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
+            android:background="#F3CC94"
             android:padding="16dp"
+            app:cornerRadius="100dp"
             android:text="@string/register" />
 
     </LinearLayout>

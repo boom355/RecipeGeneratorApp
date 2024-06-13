@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "333874194897",
+    "project_id": "recept-generator-app",
+    "storage_bucket": "recept-generator-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333874194897:android:310669ba6524d53a8058f0",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkiSzCL9omPccV1BPVGnkCdGOdmTkdMrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
