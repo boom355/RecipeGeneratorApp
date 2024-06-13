@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
 }
-
 android {
     namespace = "com.example.myapplication"
     compileSdk = 34

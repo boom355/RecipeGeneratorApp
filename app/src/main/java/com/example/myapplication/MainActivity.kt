@@ -23,21 +23,23 @@ class MainActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        if (user != null && user.isEmailVerified) {
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+            } else {
+                auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Login successful
+                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, FirstScreenActivity::class.java)
                             startActivity(intent)
-                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                            finish()
                         } else {
-                            Toast.makeText(this, "Please verify your email address.", Toast.LENGTH_SHORT).show()
+                            // Login failed
+                            Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                         }
-                    } else {
-                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
-                }
+            }
         }
 
         binding.registerButton.setOnClickListener {

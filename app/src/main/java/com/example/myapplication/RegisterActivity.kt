@@ -1,5 +1,4 @@
 package com.example.myapplication
-
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,14 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
-
+data class User(val email: String, val password: String)
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var database: FirebaseDatabase
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
