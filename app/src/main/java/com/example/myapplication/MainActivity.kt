@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
-import android.view.View
+
 class MainActivity : AppCompatActivity() {
 
     // Firebase Authentication instance
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Handle "Forgot Password?" click event
-    fun forgotPassword(view: View) {
+    fun forgotPassword() {
         val email = binding.email.text.toString().trim()
 
         if (email.isEmpty()) {
