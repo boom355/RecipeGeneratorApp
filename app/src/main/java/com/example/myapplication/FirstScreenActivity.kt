@@ -14,16 +14,24 @@ class FirstScreenActivity : AppCompatActivity() {
         binding = ActivityFirstScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Retrieve the username from the intent
+        val username = intent.getStringExtra("username")
+
+        // Set the username in the welcome TextView
+        if (username != null) {
+            binding.usernameTextView.text = "Welcome, $username"
+        } else {
+            binding.usernameTextView.text = "Welcome, Guest"
+        }
+
         // Setting up actions for the button
         binding.generate.setOnClickListener {
             // Retrieve values from EditTexts
-            val username = binding.username.text.toString()
             val ingredients = binding.enterIngredients.text.toString()
             val time = binding.time.text.toString()
             val level = binding.level.text.toString()
 
             // For now, let's just print the values to the log
-            println("Username: $username")
             println("Ingredients: $ingredients")
             println("Time: $time")
             println("Level: $level")
@@ -34,13 +42,13 @@ class FirstScreenActivity : AppCompatActivity() {
         }
 
         // Optionally, set up listeners for the ImageViews
-        binding.account.setOnClickListener {
+        binding.settings.setOnClickListener {
             // Handle account icon click
             val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+            startActivity(intent)
         }
 
-        binding.settings.setOnClickListener {
+        binding.account.setOnClickListener {
             // Handle settings icon click
             println("Settings icon clicked")
         }
