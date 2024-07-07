@@ -6,4 +6,13 @@
     <string name="register">Register</string>
     <string name="title_activity_register">register</string>
     <string name="confirm_password">confirm password</string>
+    <string name="enter_ingredients">enter ingredients</string>
+    <string name="generate_recipe">Generate recipe</string>
+    <string name="enter_cooking_level">enter cooking level</string>
+    <string name="what_are_we_cooking_today">What are we Cooking Today?</string>
+    <string name="what_ingredients_do_you_have">What Ingredients do you have?</string>
+    <string name="how_much_time_do_you_have">How much time do you have?</string>
+    <string name="enter_time_in_minutes">enter time in minutes</string>
+    <string name="cooking_level">Cooking level?</string>
+    <string name="hello">Hello</string>
 </resources>

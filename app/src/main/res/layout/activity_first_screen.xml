@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Hello"
+        android:text="@string/hello"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textAlignment="center"
@@ -36,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="What are we Cooking Today?"
+        android:text="@string/what_are_we_cooking_today"
         android:background="#FAEEDD"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#FAEEDD"
-        android:text="What Ingredients do you have?"
+        android:text="@string/what_ingredients_do_you_have"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,10 +61,10 @@
     <EditText
         android:id="@+id/enterIngredients"
         android:layout_width="380dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="#FAF9F9"
-        android:hint="enter ingredients"
+        android:hint="@string/enter_ingredients"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,25 +76,64 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#FAEEDD"
-        android:text="How much time do you have?"
+        android:text="@string/how_much_time_do_you_have"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterIngredients" />
 
-    <EditText
+    <LinearLayout
         android:id="@+id/time"
         android:layout_width="380dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="#FAF9F9"
-        android:hint="enter time in minutes"
+        android:hint="@string/enter_time_in_minutes"
         android:inputType="number"
+        android:orientation="horizontal"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" >
+
+        <CheckBox
+            android:id="@+id/timeLessThan15"
+            android:layout_width="90dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:checked="false"
+            android:text="15 min" />
+
+        <CheckBox
+            android:id="@+id/timeLessThan30"
+            android:layout_width="90dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:checked="false"
+            android:text="30 min" />
+
+        <CheckBox
+            android:id="@+id/timeLessThan45"
+            android:layout_width="90dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:checked="false"
+            android:text="45 min" />
+
+        <CheckBox
+            android:id="@+id/timeLessThan60"
+            android:layout_width="90dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="16dp"
+            android:checked="false"
+            android:gravity="center"
+            android:text="60 min" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView4"
@@ -102,33 +141,63 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="#FAEEDD"
-        android:text="Cooking level?"
+        android:text="cooking_level"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time" />
 
-    <EditText
+    <!-- LinearLayout for cooking levels -->
+    <LinearLayout
         android:id="@+id/level"
         android:layout_width="380dp"
-        android:layout_height="34dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:background="#FAF9F9"
-        android:hint="enter cooking level"
-        android:inputType="text"
+        android:orientation="horizontal"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <CheckBox
+            android:id="@+id/levelBeginner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="beginner"
+            android:checked="false" />
+
+        <CheckBox
+            android:id="@+id/levelIntermediate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="intermediate"
+            android:checked="false" />
+
+        <CheckBox
+            android:id="@+id/levelAdvanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="advanced"
+            android:checked="false" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/generate"
-        android:layout_width="275dp"
-        android:layout_height="34dp"
+        android:layout_width="264dp"
+        android:layout_height="35dp"
         android:layout_marginTop="32dp"
         android:background="#99FACF92"
-        android:text="Generate recipe"
+        android:text="@string/generate_recipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level" />

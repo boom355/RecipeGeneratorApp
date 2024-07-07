@@ -6,37 +6,50 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
 
-    // Firebase Authentication instance
     private lateinit var auth: FirebaseAuth
-
-    // View binding instance
     private lateinit var binding: ActivityMainBinding
+    private lateinit var database: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = FirebaseAuth.getInstance()  // Initialize Firebase Auth
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance()
 
-        // Set click listener for login button
         binding.loginButton.setOnClickListener {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 
-            // Sign in with Firebase Authentication
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val user = auth.currentUser
                         if (user != null && user.isEmailVerified) {
-                            // Navigate to FirstScreenActivity upon successful login
-                            val intent = Intent(this, FirstScreenActivity::class.java)
-                            startActivity(intent)
-                            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                            // Retrieve username from the database
+                            val userId = user.uid
+                            val userRef = database.reference.child("users").child(userId)
+                            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    val username = dataSnapshot.child("username").getValue(String::class.java) ?: "Guest"
+
+                                    // Navigate to FirstScreenActivity upon successful login
+                                    val intent = Intent(this@MainActivity, FirstScreenActivity::class.java).apply {
+                                        putExtra("username", username)
+                                    }
+                                    startActivity(intent)
+                                    Toast.makeText(this@MainActivity, "Login successful", Toast.LENGTH_SHORT).show()
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    Toast.makeText(this@MainActivity, "Failed to retrieve user data", Toast.LENGTH_SHORT).show()
+                                }
+                            })
                         } else {
                             Toast.makeText(this, "Please verify your email address.", Toast.LENGTH_SHORT).show()
                         }
@@ -46,15 +59,17 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        // Set click listener for register button
         binding.registerButton.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+        binding.forgotPassword.setOnClickListener {
+            forgotPassword()
+        }
     }
 
-    // Handle "Forgot Password?" click event
-    fun forgotPassword() {
+    private fun forgotPassword() {
         val email = binding.email.text.toString().trim()
 
         if (email.isEmpty()) {
@@ -62,7 +77,6 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // Send password reset email
         auth.sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -73,4 +87,3 @@ class MainActivity : AppCompatActivity() {
             }
     }
 }
-//binding.registerButton.setOnClickListener: Sets a click listener on the register button (registerButton). When clicked, it navigates to the RegisterActivity.

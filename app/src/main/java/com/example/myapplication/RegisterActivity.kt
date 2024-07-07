@@ -51,10 +51,8 @@ class RegisterActivity : AppCompatActivity() {
                                             if (saveTask.isSuccessful) {
                                                 Toast.makeText(this, "Registration Successful. Please check your email for verification.", Toast.LENGTH_LONG).show()
 
-                                                // Pass the username, email, and password back to FirstScreenActivity
-                                                val intent = Intent(this, FirstScreenActivity::class.java).apply {
-                                                    putExtra("username", username)
-                                                }
+                                                // Navigate back to MainActivity for login
+                                                val intent = Intent(this, MainActivity::class.java)
                                                 startActivity(intent)
                                                 finish()
                                             } else {

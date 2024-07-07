@@ -18,38 +18,49 @@ class FirstScreenActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username")
 
         // Set the username in the welcome TextView
-        if (username != null) {
-            binding.usernameTextView.text = "Welcome, $username"
+        if (username != null && username.isNotBlank()) {
+            binding.usernameTextView.text = " Welcome, $username"
         } else {
             binding.usernameTextView.text = "Welcome, Guest"
         }
 
-        // Setting up actions for the button
         binding.generate.setOnClickListener {
-            // Retrieve values from EditTexts
             val ingredients = binding.enterIngredients.text.toString()
-            val time = binding.time.text.toString()
-            val level = binding.level.text.toString()
 
-            // For now, let's just print the values to the log
+            var selectedLevel = 0 // Default to 0 or handle no selection case
+            if (binding.levelBeginner.isChecked) {
+                selectedLevel = 1
+            } else if (binding.levelIntermediate.isChecked) {
+                selectedLevel = 2
+            } else if (binding.levelAdvanced.isChecked) {
+                selectedLevel = 3
+            }
+
+            var selectedTime = 0 // Default to 0 or handle no selection case
+            if (binding.timeLessThan15.isChecked) {
+                selectedTime = 15
+            } else if (binding.timeLessThan30.isChecked) {
+                selectedTime = 30
+            } else if (binding.timeLessThan45.isChecked) {
+                selectedTime = 45
+            } else if (binding.timeLessThan60.isChecked) {
+                selectedTime = 60
+            }
+
             println("Ingredients: $ingredients")
-            println("Time: $time")
-            println("Level: $level")
+            println("Cooking Level: $selectedLevel")
+            println("Selected Cooking Time: $selectedTime minutes")
 
-            // Start the second activity
             val intent = Intent(this, SecondScreenActivity::class.java)
             startActivity(intent)
         }
 
-        // Optionally, set up listeners for the ImageViews
         binding.settings.setOnClickListener {
-            // Handle account icon click
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
 
         binding.account.setOnClickListener {
-            // Handle settings icon click
             println("Settings icon clicked")
         }
     }
