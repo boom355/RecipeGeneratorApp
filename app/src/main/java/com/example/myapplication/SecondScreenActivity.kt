@@ -1,10 +1,9 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.myapplication.databinding.ActivitySecondScreenBinding
 
 class SecondScreenActivity : AppCompatActivity() {
@@ -13,14 +12,19 @@ class SecondScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivitySecondScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        // Retrieve the recipe from the intent
+        val recipe = intent.getStringExtra("recipe")
+        if (recipe != null) {
+            displayRecipe(recipe)
+        } else {
+            Toast.makeText(this, "No recipe provided", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun displayRecipe(recipe: String) {
+        binding.enterIngredients.setText(recipe)
     }
 }
