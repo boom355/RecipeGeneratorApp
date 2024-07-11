@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAEEDD"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -9,7 +10,8 @@
         android:id="@+id/apiKeyEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter API Key"
+        android:background="#F3F1EF"
+        android:hint="@string/enter_api_key"
         android:inputType="text"
         android:minHeight="48dp" />
 
@@ -17,7 +19,8 @@
         android:id="@+id/verifyApiKeyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="VERIFY"
+        android:background="#F4DAB3"
+        android:text="@string/verify"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>

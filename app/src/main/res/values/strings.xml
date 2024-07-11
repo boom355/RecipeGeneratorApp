@@ -15,4 +15,7 @@
     <string name="enter_time_in_minutes">enter time in minutes</string>
     <string name="cooking_level">Cooking level?</string>
     <string name="hello">Hello</string>
+    <string name="todo">TODO</string>
+    <string name="enter_api_key">Enter API Key</string>
+    <string name="verify">VERIFY</string>
 </resources>
