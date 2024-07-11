@@ -1,6 +1,6 @@
 package com.example.myapplication
 
-import User
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
