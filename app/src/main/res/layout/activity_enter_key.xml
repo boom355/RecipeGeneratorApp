@@ -10,6 +10,7 @@
         android:id="@+id/apiKeyEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:background="#F3F1EF"
         android:hint="@string/enter_api_key"
         android:inputType="text"

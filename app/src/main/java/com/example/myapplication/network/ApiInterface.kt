@@ -9,7 +9,7 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface ApiInterface {
-    @Headers("Authorization: Bearer $OPENAI_API_KEY")
+    @Headers("Authorization: Bearer $OPENAI_API_KEY", "Content-Type: application/json")
     @POST("v1/completions")
     fun createChatCompletion(@Body request: ChatRequest): Call<ChatResponse>
 }
